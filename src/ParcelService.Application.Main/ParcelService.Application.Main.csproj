@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ParcelService.Application.DTO\ParcelService.Application.DTO.csproj" />
+    <ProjectReference Include="..\ParcelService.Application.Interface\ParcelService.Application.Interface.csproj" />
+    <ProjectReference Include="..\ParcelService.CrossCutting.Common\ParcelService.CrossCutting.Common.csproj" />
+    <ProjectReference Include="..\ParcelService.Domain.Entity\ParcelService.Domain.Entity.csproj" />
+    <ProjectReference Include="..\ParcelService.Domain.Interface\ParcelService.Domain.Interface.csproj" />
+  </ItemGroup>
+
+</Project>
