@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.123" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
+    <PackageReference Include="Npgsql" Version="6.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ParcelService.CrossCutting.Common\ParcelService.CrossCutting.Common.csproj" />
+    <ProjectReference Include="..\ParcelService.Domain.Entity\ParcelService.Domain.Entity.csproj" />
+    <ProjectReference Include="..\ParcelService.Infrastructure.Data\ParcelService.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\ParcelService.Infrastructure.Interface\ParcelService.Infrastructure.Interface.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -32,6 +32,9 @@
     <ProjectReference Include="..\ParcelService.Domain.Core\ParcelService.Domain.Core.csproj" />
     <ProjectReference Include="..\ParcelService.Domain.Entity\ParcelService.Domain.Entity.csproj" />
     <ProjectReference Include="..\ParcelService.Domain.Interface\ParcelService.Domain.Interface.csproj" />
+    <ProjectReference Include="..\ParcelService.Infrastructure.Data\ParcelService.Infrastructure.Data.csproj" />
+    <ProjectReference Include="..\ParcelService.Infrastructure.Interface\ParcelService.Infrastructure.Interface.csproj" />
+    <ProjectReference Include="..\ParcelService.Infrastructure.Repository\ParcelService.Infrastructure.Repository.csproj" />
   </ItemGroup>
 
 </Project>

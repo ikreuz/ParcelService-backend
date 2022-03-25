@@ -35,6 +35,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParcelService.CrossCutting.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParcelService.CrossCutting.Security", "src\ParcelService.CrossCutting.Security\ParcelService.CrossCutting.Security.csproj", "{2F3432D4-DDC7-452E-850D-B14DD7002841}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParcelService.Infrastructure.Data", "src\ParcelService.Infrastructure.Data\ParcelService.Infrastructure.Data.csproj", "{DC725276-DFEA-4056-9823-1C0B3AB9F26E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParcelService.Infrastructure.Interface", "src\ParcelService.Infrastructure.Interface\ParcelService.Infrastructure.Interface.csproj", "{D9103219-8E3D-4C4C-9FEF-394F57FD26D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParcelService.Infrastructure.Repository", "src\ParcelService.Infrastructure.Repository\ParcelService.Infrastructure.Repository.csproj", "{220D8C70-1C60-4170-B083-CED9D3890729}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +91,18 @@ Global
 		{2F3432D4-DDC7-452E-850D-B14DD7002841}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F3432D4-DDC7-452E-850D-B14DD7002841}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F3432D4-DDC7-452E-850D-B14DD7002841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC725276-DFEA-4056-9823-1C0B3AB9F26E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC725276-DFEA-4056-9823-1C0B3AB9F26E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC725276-DFEA-4056-9823-1C0B3AB9F26E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC725276-DFEA-4056-9823-1C0B3AB9F26E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9103219-8E3D-4C4C-9FEF-394F57FD26D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9103219-8E3D-4C4C-9FEF-394F57FD26D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9103219-8E3D-4C4C-9FEF-394F57FD26D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9103219-8E3D-4C4C-9FEF-394F57FD26D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{220D8C70-1C60-4170-B083-CED9D3890729}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{220D8C70-1C60-4170-B083-CED9D3890729}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{220D8C70-1C60-4170-B083-CED9D3890729}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{220D8C70-1C60-4170-B083-CED9D3890729}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +119,9 @@ Global
 		{403DB87F-C036-44F1-8727-8A78DC67EE83} = {1B4FF6CD-517E-4C76-AF0D-15600658955D}
 		{3E67F94A-3FC7-41ED-A480-CF4D3B6710AA} = {1B4FF6CD-517E-4C76-AF0D-15600658955D}
 		{2F3432D4-DDC7-452E-850D-B14DD7002841} = {1B4FF6CD-517E-4C76-AF0D-15600658955D}
+		{DC725276-DFEA-4056-9823-1C0B3AB9F26E} = {0EE8667D-E382-4984-A54C-1D86E625C6F3}
+		{D9103219-8E3D-4C4C-9FEF-394F57FD26D9} = {0EE8667D-E382-4984-A54C-1D86E625C6F3}
+		{220D8C70-1C60-4170-B083-CED9D3890729} = {0EE8667D-E382-4984-A54C-1D86E625C6F3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EB763EA1-6D88-494A-A278-057AB01C5AB1}

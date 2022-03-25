@@ -6,8 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ParcelService.Domain.Entity\ParcelService.Domain.Entity.csproj" />
-    <ProjectReference Include="..\ParcelService.Domain.Interface\ParcelService.Domain.Interface.csproj" />
-    <ProjectReference Include="..\ParcelService.Infrastructure.Interface\ParcelService.Infrastructure.Interface.csproj" />
   </ItemGroup>
 
 </Project>
