@@ -1,11 +1,14 @@
 ﻿namespace ParcelService.CrossCutting.Common
 {
+    public enum FilterFlag
+    {
+        MultiLine = 1,
+        Nomarkup = 2,
+        NoScripting = 4,
+        NoSQL = 8
+    }
     public interface IPortalSecurity
     {
-        public string InputFilter { get; set; }
-        public bool IncludesMarkup { get; set; }
-        public string FormatDisableScripting { get; set; }
-        public string FormatMultiLine { get; set; }
-        public string FormatRemoveSQL { get; set; }
+        public string InputFilter(string userInput, FilterFlag filterType);
     }
 }

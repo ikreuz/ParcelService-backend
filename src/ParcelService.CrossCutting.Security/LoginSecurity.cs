@@ -9,106 +9,119 @@ namespace ParcelService.CrossCutting.Security
 {
     public class LoginSecurity
     {
-        private const string _SecurityKey = "";
+        //private const string _defaultPassword = "yA384g%cCr#=-=?#S&2!Z9LT-fPp9B#YSqn";
 
-        public static string defaultKey
-        {
-            get
-            {
-                System.Configuration.AppSettingsReader s = new System.Configuration.AppSettingsReader();
-                return s.GetValue("defaultKey", typeof(string)).ToString();
-            }
-        }
+        //public static string defaultKey
+        //{
+        //    get
+        //    {
+        //        System.Configuration.AppSettingsReader s = new System.Configuration.AppSettingsReader();
+        //        return s.GetValue("defaultKey", typeof(string)).ToString();
+        //    }
+        //}
 
-        public static string Encrypt(string strInput)
-        {
-            TripleDESCryptoServiceProvider provider = new TripleDESCryptoServiceProvider();
-            UnicodeEncoding unicodeEncoding = new UnicodeEncoding();
-            MemoryStream cipherText = new MemoryStream();
-            CryptoStream encrypted;
-            string result = string.Empty;
+        //public virtual bool ValidateAccess(string loginPssw, string dbPssw)
+        //{
+        //    if (Decrypt(loginPssw) != dbPssw) return false;
+        //    return true;
+        //}
+        //public virtual bool IsPasswordValid(string loginPssw)
+        //{
+        //    if (loginPssw.Length <= 0 && loginPssw.Length < 7) return false;
+        //    if (string.IsNullOrEmpty(loginPssw)) return false;
+        //    if (string.IsNullOrWhiteSpace(loginPssw)) return false;
+        //    return true;
+        //}
 
-            try
-            {
-                byte[] text = unicodeEncoding.GetBytes(HttpUtility.HtmlEncode(strInput));
-                byte[] salt = new byte[0];
-                PasswordDeriveBytes passwordDerive = new PasswordDeriveBytes(defaultKey, salt);
-                byte[] derivedKey = passwordDerive.GetBytes(24);
-                provider.Key = derivedKey;
-                provider.IV = passwordDerive.GetBytes(8);
+        //public static string Encrypt(string strInput)
+        //{
+        //    TripleDESCryptoServiceProvider provider = new TripleDESCryptoServiceProvider();
+        //    UnicodeEncoding unicodeEncoding = new UnicodeEncoding();
+        //    MemoryStream cipherText = new MemoryStream();
+        //    CryptoStream encrypted;
+        //    string result = string.Empty;
 
-                encrypted = new CryptoStream(cipherText, provider.CreateEncryptor(), CryptoStreamMode.Write);
-                encrypted.Write(text, 0, strInput.Length);
-                encrypted.FlushFinalBlock();
+        //    try
+        //    {
+        //        byte[] text = unicodeEncoding.GetBytes(HttpUtility.HtmlEncode(strInput));
+        //        byte[] salt = new byte[0];
+        //        PasswordDeriveBytes passwordDerive = new PasswordDeriveBytes(defaultKey, salt);
+        //        byte[] derivedKey = passwordDerive.GetBytes(24);
+        //        provider.Key = derivedKey;
+        //        provider.IV = passwordDerive.GetBytes(8);
 
-                result = Convert.ToBase64String(cipherText.ToArray());
+        //        encrypted = new CryptoStream(cipherText, provider.CreateEncryptor(), CryptoStreamMode.Write);
+        //        encrypted.Write(text, 0, strInput.Length);
+        //        encrypted.FlushFinalBlock();
 
-                encrypted.Close();
-                encrypted.Dispose();
-                cipherText.Close();
+        //        result = Convert.ToBase64String(cipherText.ToArray());
 
-                return result;
-            }
-            catch
-            {
-                return null;
-            }
-            finally
-            {
-                if (cipherText != null)
-                    cipherText.Dispose();
+        //        encrypted.Close();
+        //        encrypted.Dispose();
+        //        cipherText.Close();
 
-                provider.Clear();
-            }
-        }
+        //        return result;
+        //    }
+        //    catch
+        //    {
+        //        return null;
+        //    }
+        //    finally
+        //    {
+        //        if (cipherText != null)
+        //            cipherText.Dispose();
 
-        public static string Decrypt(string strCipher)
-        {
-            TripleDESCryptoServiceProvider provider = new TripleDESCryptoServiceProvider();
-            UnicodeEncoding unicodeEncoding = new UnicodeEncoding();
-            CryptoStream decrypted;
-            MemoryStream plainText = new MemoryStream();
-            MemoryStream cipherText;
-            string result = string.Empty;
+        //        provider.Clear();
+        //    }
+        //}
 
-            try
-            {
-                byte[] byteCipherText = Convert.FromBase64String(strCipher);
-                cipherText = new MemoryStream(byteCipherText);
-                byte[] salt = new byte[0];
-                PasswordDeriveBytes passwordDerive = new PasswordDeriveBytes(defaultKey, salt);
-                byte[] derivedKey = passwordDerive.GetBytes(24);
-                provider.Key = derivedKey;
-                provider.IV = passwordDerive.GetBytes(8);
+        //public static string Decrypt(string strCipher)
+        //{
+        //    TripleDESCryptoServiceProvider provider = new TripleDESCryptoServiceProvider();
+        //    UnicodeEncoding unicodeEncoding = new UnicodeEncoding();
+        //    CryptoStream decrypted;
+        //    MemoryStream plainText = new MemoryStream();
+        //    MemoryStream cipherText;
+        //    string result = string.Empty;
 
-                decrypted = new CryptoStream(cipherText, provider.CreateDecryptor(), CryptoStreamMode.Read);
+        //    try
+        //    {
+        //        byte[] byteCipherText = Convert.FromBase64String(strCipher);
+        //        cipherText = new MemoryStream(byteCipherText);
+        //        byte[] salt = new byte[0];
+        //        PasswordDeriveBytes passwordDerive = new PasswordDeriveBytes(defaultKey, salt);
+        //        byte[] derivedKey = passwordDerive.GetBytes(24);
+        //        provider.Key = derivedKey;
+        //        provider.IV = passwordDerive.GetBytes(8);
 
-                StreamWriter writer = new StreamWriter(plainText);
-                StreamReader reader = new StreamReader(decrypted);
-                writer.Write(reader.ReadToEnd());
-                writer.Flush();
+        //        decrypted = new CryptoStream(cipherText, provider.CreateDecryptor(), CryptoStreamMode.Read);
 
-                result = unicodeEncoding.GetString(plainText.ToArray());
+        //        StreamWriter writer = new StreamWriter(plainText);
+        //        StreamReader reader = new StreamReader(decrypted);
+        //        writer.Write(reader.ReadToEnd());
+        //        writer.Flush();
 
-                decrypted.Clear();
-                decrypted.Dispose();
+        //        result = unicodeEncoding.GetString(plainText.ToArray());
 
-                cipherText.Close();
-                cipherText.Dispose();
+        //        decrypted.Clear();
+        //        decrypted.Dispose();
 
-                return HttpUtility.HtmlDecode(result);
-            }
-            catch
-            {
-                return null;
-            }
-            finally
-            {
-                provider.Clear();
-                plainText.Close();
-                plainText.Dispose();
-            }
-        }
+        //        cipherText.Close();
+        //        cipherText.Dispose();
+
+        //        return HttpUtility.HtmlDecode(result);
+        //    }
+        //    catch
+        //    {
+        //        return null;
+        //    }
+        //    finally
+        //    {
+        //        provider.Clear();
+        //        plainText.Close();
+        //        plainText.Dispose();
+        //    }
+        //}
 
         public static string ByteArrayToHexString(byte[] ba)
         {
@@ -122,5 +135,10 @@ namespace ParcelService.CrossCutting.Security
                 .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
                 .ToArray();
         }
+
+        //public static string BuildPassword(string password)
+        //{
+        //    return Encrypt(password);
+        //}
     }
 }

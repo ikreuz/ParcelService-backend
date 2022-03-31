@@ -1,11 +1,9 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ParcelService.Application.Interface;
@@ -13,6 +11,7 @@ using ParcelService.Application.Main;
 using ParcelService.CrossCutting.Common;
 using ParcelService.CrossCutting.Logging;
 using ParcelService.CrossCutting.Mapper;
+using ParcelService.CrossCutting.Security;
 using ParcelService.Domain.Core;
 using ParcelService.Domain.Interface;
 using ParcelService.Infrastructure.Data;
@@ -20,9 +19,7 @@ using ParcelService.Infrastructure.Interface;
 using ParcelService.Infrastructure.Repository;
 using ParcelService.Services.WebApi.Helpers;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -75,7 +72,7 @@ namespace ParcelService.Services.WebApi
                         {
                             OnTokenValidated = context =>
                             {
-                                var userId = int.Parse(context.Principal.Identity.Name);
+                                //var userId = int.Parse(context.Principal.Identity.Name);
                                 return Task.CompletedTask;
                             },
 
@@ -193,19 +190,29 @@ namespace ParcelService.Services.WebApi
         public static IServiceCollection AddConfitureServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSingleton<IConfiguration>(configuration);
-
+            
             services.AddAutoMapper(x => x.AddProfile(new MappingsProfile()));
-
             services.AddSingleton<IConnectionFactory, ConnectionFactory>();
+            // Dependecy injection for customers
             services.AddScoped<ICustomersApplication, CustomersApplication>();
             services.AddScoped<ICustomersDomain, CustomersDomain>();
             services.AddScoped<ICustomersRepository, CustomersRepository>();
-
+            // Dependecy injection for users
             services.AddScoped<IUsersApplication, UsersApplication>();
             services.AddScoped<IUsersDomain, UsersDomain>();
             services.AddScoped<IUsersRepository, UsersRepository>();
-
+            // Dependecy injection for roles
+            services.AddScoped<IRolesApplication, RolesApplication>();
+            services.AddScoped<IRolesDomain, RolesDomain>();
+            services.AddScoped<IRolesRepository, RolesRepository>();
+            // Dependecy injection for userData
+            services.AddScoped<IUserDataApplication, UserDataApplication>();
+            services.AddScoped<IUserDataDomain, UserDataDomain>();
+            services.AddScoped<IUserDataRepository, UserDataRepository>();
+            // Dependecy injection for logger
             services.AddScoped(typeof(IAppLogger<>), typeof(LoggerAdapter<>));
+
+            services.AddScoped<IPortalSecurity, PortalSecurity>();
 
             return services;
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ParcelService.CrossCutting.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ using System.Web;
 
 namespace ParcelService.CrossCutting.Security
 {
-    public class PortalSecurity
+    public class PortalSecurity : IPortalSecurity
     {
-        private static readonly Regex StripTagsRegex = new Regex("<[^<>*>", RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
+        private static readonly Regex StripTagsRegex = new Regex("<[^<>]*>", RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled);
         private static readonly Regex BadStatementRegex = new Regex(BadStatementExpression, RegexOptions.IgnoreCase | RegexOptions.Compiled);
         private static readonly Regex[] RxListStrings = new[]
         {
@@ -42,29 +43,29 @@ namespace ParcelService.CrossCutting.Security
         const RegexOptions RxOptions = RegexOptions.IgnoreCase | RegexOptions.Singleline | RegexOptions.Compiled;
         const string BadStatementExpression = ";|--|\bcreate\b|\bdrop\b|\bselect\b|\binsert\b|\bdelete\b|\bupdate\b|\bunion\b|sp_|xp_|\bexec\b|\bexecute\b|/\\*.*\\*/|\bdeclare\b|\bwaitfor\b|%|&";
 
-        public enum FilterFlag
-        {
-            MultiLine = 1,
-            Nomarkup = 2,
-            NoScripting = 4,
-            NoSQL = 8
-        }
+        //public enum FilterFlag
+        //{
+        //    MultiLine = 1,
+        //    Nomarkup = 2,
+        //    NoScripting = 4,
+        //    NoSQL = 8
+        //}
 
-        public string InputFilter(string userInput, FilterFlag filterType)
+        public string InputFilter(string userInput, Common.FilterFlag filterType)
         {
             if (userInput == null) return "";
 
             var tempInput = userInput;
 
-            if ((filterType & FilterFlag.NoSQL) == FilterFlag.NoSQL) tempInput = FormatRemoveSQL(tempInput);
+            if ((filterType & Common.FilterFlag.NoSQL) == Common.FilterFlag.NoSQL) tempInput = FormatRemoveSQL(tempInput);
 
-            if ((filterType & FilterFlag.Nomarkup) == FilterFlag.Nomarkup && IncludesMarkup(tempInput))
+            if ((filterType & Common.FilterFlag.Nomarkup) == Common.FilterFlag.Nomarkup && IncludesMarkup(tempInput))
                 tempInput = HttpUtility.HtmlEncode(tempInput);
 
-            if ((filterType & FilterFlag.NoScripting) == FilterFlag.NoScripting)
+            if ((filterType & Common.FilterFlag.NoScripting) == Common.FilterFlag.NoScripting)
                 tempInput = FormatDisableScripting(tempInput);
 
-            if ((filterType & FilterFlag.MultiLine) == FilterFlag.MultiLine)
+            if ((filterType & Common.FilterFlag.MultiLine) == Common.FilterFlag.MultiLine)
                 tempInput = FormatMultiLine(tempInput);
 
             return tempInput;
@@ -115,5 +116,7 @@ namespace ParcelService.CrossCutting.Security
         {
             return BadStatementRegex.Replace(strSQL, " ").Replace("'", "''");
         }
+
+
     }
 }

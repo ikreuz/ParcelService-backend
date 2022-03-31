@@ -33,7 +33,10 @@ namespace ParcelService.CrossCutting.Mapper
             //    .ForMember(destination => destination.Usr_Authorizes_Id, source => source.MapFrom(src => src.Usr_Authorizes_Id))
             //    .ReverseMap();
 
+            
+            CreateMap<Roles, RolesDto>().ReverseMap();
             CreateMap<Users, UsersDto>().ReverseMap();
+            CreateMap<UserData, UserDataDto>().ReverseMap();
         }
     }
 }

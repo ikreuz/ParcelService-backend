@@ -14,7 +14,7 @@ namespace ParcelService.Domain.Core
             _customersRepository = customersRepository;
         }
 
-        #region Métodos Síncronos
+        #region Synchronous Methods
 
         public bool Insert(Customers customers)
         {
@@ -43,7 +43,7 @@ namespace ParcelService.Domain.Core
 
         #endregion
 
-        #region Métodos Asíncronos
+        #region Asynchronous Methods
 
         public async Task<bool> InsertAsync(Customers customers)
         {

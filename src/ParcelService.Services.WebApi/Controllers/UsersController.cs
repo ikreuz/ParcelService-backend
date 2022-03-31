@@ -24,10 +24,14 @@ namespace ParcelService.Services.WebApi.Controllers
     {
         private readonly IUsersApplication _usersApplication;
         private readonly AppSettings _appSettings;
+        private readonly List<string> _role = new List<string> { "Master", "Administrator", "Supervisor",
+            "Typist", "Courier", "Customer", "Driver" };
 
-        public UsersController(IUsersApplication usersApplication, IOptions<AppSettings> appSettings)
+        public UsersController(
+            IUsersApplication usersApplication,           
+            IOptions<AppSettings> appSettings)
         {
-            _usersApplication = usersApplication;
+            _usersApplication = usersApplication;           
             _appSettings = appSettings.Value;
         }
 
@@ -35,7 +39,10 @@ namespace ParcelService.Services.WebApi.Controllers
         [HttpPost("Authenticate")]
         public IActionResult Authenticate([FromBody] UsersDto usersDto)
         {
+            if (usersDto == null) return BadRequest("The login resource mut be allocated.");
+
             var response = _usersApplication.Authenticate(usersDto.UserName, usersDto.Password);
+
             if (response.IsSuccess)
             {
                 if (response.Data != null)
@@ -57,9 +64,9 @@ namespace ParcelService.Services.WebApi.Controllers
             {
                 Subject = new ClaimsIdentity(new Claim[]
             {
-                new Claim(ClaimTypes.Name, usersDto.Data.UserId.ToString())
+                new Claim(ClaimTypes.Name, usersDto.Data.UserName)
             }),
-                Expires = DateTime.UtcNow.AddMinutes(1),
+                Expires = DateTime.UtcNow.AddMinutes(15),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256),
                 Issuer = _appSettings.Issuer,
                 Audience = _appSettings.Audience
@@ -68,5 +75,6 @@ namespace ParcelService.Services.WebApi.Controllers
             var tokenString = tokenHandler.WriteToken(token);
             return tokenString;
         }
+
     }
 }

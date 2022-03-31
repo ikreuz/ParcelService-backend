@@ -23,29 +23,29 @@ namespace ParcelService.Infrastructure.Repository
         {
             using (var connection = _connectionFactory.GetConnection)
             {
-                var query = "CustomersInsert";
+                var query = "fn_insert_customers";
                 var parameters = new DynamicParameters();
-                parameters.Add("Customer_Id", customers.Customer_Id);
-                parameters.Add("User_Access", customers.User_Access);
-                parameters.Add("Branchoffice_Id", customers.Branchoffice_Id);
-                parameters.Add("Third_Type_Id", customers.Third_Type_Id);
-                parameters.Add("FirstName", customers.FirstName);
-                parameters.Add("MiddleName", customers.MiddleName);
-                parameters.Add("LastName", customers.LastName);
-                parameters.Add("TradeName", customers.TradeName);
-                parameters.Add("CompanyName", customers.CompanyName);
-                parameters.Add("Rfc", customers.Rfc);
-                parameters.Add("Email", customers.Email);
-                parameters.Add("Area_Code", customers.Area_Code);
-                parameters.Add("Phone", customers.Phone);
-                parameters.Add("Customer_Type_Id", customers.Customer_Type_Id);
-                parameters.Add("With_Agreement", customers.With_Agreement);
-                parameters.Add("Date_Creates", customers.Date_Creates);
-                parameters.Add("Date_Modifies", customers.Date_Modifies);
-                parameters.Add("Date_Authorizes", customers.Date_Authorizes);
-                parameters.Add("Usr_Creates_Id", customers.Usr_Creates_Id);
-                parameters.Add("Usr_Modifies_id", customers.Usr_Modifies_id);
-                parameters.Add("Usr_Authorizes_Id", customers.Usr_Authorizes_Id);
+                parameters.Add("@_customer_id", customers.Customer_Id);
+                parameters.Add("@_user_access_id", customers.User_Access_Id);
+                parameters.Add("@_branch_office_id", customers.Branch_Office_Id);
+                parameters.Add("@_third_type_id", customers.Third_Type_Id);
+                parameters.Add("@_firstname", customers.Firtsname);
+                parameters.Add("@_lastname", customers.Lastname);
+                parameters.Add("@_business_name", customers.Business_Name);
+                parameters.Add("@_company_name", customers.Company_Name);
+                parameters.Add("@_rfc", customers.Rfc);
+                parameters.Add("@_email", customers.Email);
+                parameters.Add("@_area_code", customers.Area_Code);
+                parameters.Add("@_phone", customers.Phone);
+                parameters.Add("@_customer_type_id", customers.Customer_Type_Id);
+                parameters.Add("@_with_agreement", customers.With_Agreement);
+                parameters.Add("@_date_creation", customers.Date_Creation);
+                parameters.Add("@_date_modification", customers.Date_Modification);
+                parameters.Add("@_date_authorization", customers.Date_Authorization);
+                parameters.Add("@_usr_creates_id", customers.Usr_Creates_Id);
+                parameters.Add("@_usr_modifies_id", customers.Usr_Modifies_Id);
+                parameters.Add("@_usr_authorizes_id", customers.Usr_Authorizes_Id);
+                
 
                 var result = connection.Execute(query, param: parameters, commandType: CommandType.StoredProcedure);
                 return result > 0;
@@ -56,29 +56,29 @@ namespace ParcelService.Infrastructure.Repository
         {
             using (var connection = _connectionFactory.GetConnection)
             {
-                var query = "CustomersUpdate";
+                var query = "fn_update_customers";
                 var parameters = new DynamicParameters();
-                parameters.Add("Customer_Id", customers.Customer_Id);
-                parameters.Add("User_Access", customers.User_Access);
-                parameters.Add("Branchoffice_Id", customers.Branchoffice_Id);
-                parameters.Add("Third_Type_Id", customers.Third_Type_Id);
-                parameters.Add("FirstName", customers.FirstName);
-                parameters.Add("MiddleName", customers.MiddleName);
-                parameters.Add("LastName", customers.LastName);
-                parameters.Add("TradeName", customers.TradeName);
-                parameters.Add("CompanyName", customers.CompanyName);
-                parameters.Add("Rfc", customers.Rfc);
-                parameters.Add("Email", customers.Email);
-                parameters.Add("Area_Code", customers.Area_Code);
-                parameters.Add("Phone", customers.Phone);
-                parameters.Add("Customer_Type_Id", customers.Customer_Type_Id);
-                parameters.Add("With_Agreement", customers.With_Agreement);
-                parameters.Add("Date_Creates", customers.Date_Creates);
-                parameters.Add("Date_Modifies", customers.Date_Modifies);
-                parameters.Add("Date_Authorizes", customers.Date_Authorizes);
-                parameters.Add("Usr_Creates_Id", customers.Usr_Creates_Id);
-                parameters.Add("Usr_Modifies_id", customers.Usr_Modifies_id);
-                parameters.Add("Usr_Authorizes_Id", customers.Usr_Authorizes_Id);
+                parameters.Add("@_customer_id", customers.Customer_Id);
+                parameters.Add("@_user_access_id", customers.User_Access_Id);
+                parameters.Add("@_branch_office_id", customers.Branch_Office_Id);
+                parameters.Add("@_third_type_id", customers.Third_Type_Id);
+                parameters.Add("@_firstname", customers.Firtsname);
+                parameters.Add("@_lastname", customers.Lastname);
+                parameters.Add("@_business_name", customers.Business_Name);
+                parameters.Add("@_company_name", customers.Company_Name);
+                parameters.Add("@_rfc", customers.Rfc);
+                parameters.Add("@_email", customers.Email);
+                parameters.Add("@_area_code", customers.Area_Code);
+                parameters.Add("@_phone", customers.Phone);
+                parameters.Add("@_customer_type_id", customers.Customer_Type_Id);
+                parameters.Add("@_with_agreement", customers.With_Agreement);
+                parameters.Add("@_date_creation", customers.Date_Creation);
+                parameters.Add("@_date_modification", customers.Date_Modification);
+                parameters.Add("@_date_authorization", customers.Date_Authorization);
+                parameters.Add("@_usr_creates_id", customers.Usr_Creates_Id);
+                parameters.Add("@_usr_modifies_id", customers.Usr_Modifies_Id);
+                parameters.Add("@_usr_authorizes_id", customers.Usr_Authorizes_Id);
+                
 
                 var result = connection.Execute(query, param: parameters, commandType: CommandType.StoredProcedure);
                 return result > 0;
@@ -88,9 +88,9 @@ namespace ParcelService.Infrastructure.Repository
         {
             using (var connection = _connectionFactory.GetConnection)
             {
-                var query = "CustomersDelete";
+                var query = "fn_delete_customers";
                 var parameters = new DynamicParameters();
-                parameters.Add("CustomerID", customerId);
+                parameters.Add("@_customer_id", customerId);
 
                 var result = connection.Execute(query, param: parameters, commandType: CommandType.StoredProcedure);
                 return result > 0;
@@ -101,9 +101,9 @@ namespace ParcelService.Infrastructure.Repository
         {
             using (var connection = _connectionFactory.GetConnection)
             {
-                var query = "CustomersGetByID";
+                var query = "fn_get_customers";
                 var parameters = new DynamicParameters();
-                parameters.Add("CustomerID", customerId);
+                parameters.Add("@_customer_id", customerId);
 
                 var customer = connection.QuerySingle<Customers>(query, param: parameters, commandType: CommandType.StoredProcedure);
                 return customer;
@@ -114,7 +114,7 @@ namespace ParcelService.Infrastructure.Repository
         {
             using (var connection = _connectionFactory.GetConnection)
             {
-                var query = "CustomersList";
+                var query = "fn_get_all_customers";
 
                 var customers = connection.Query<Customers>(query, commandType: CommandType.StoredProcedure);
                 return customers;
@@ -128,29 +128,29 @@ namespace ParcelService.Infrastructure.Repository
         {
             using (var connection = _connectionFactory.GetConnection)
             {
-                var query = "CustomersInsert";
+                var query = "fn_insert_customers";
                 var parameters = new DynamicParameters();
-                parameters.Add("Customer_Id", customers.Customer_Id);
-                parameters.Add("User_Access", customers.User_Access);
-                parameters.Add("Branchoffice_Id", customers.Branchoffice_Id);
-                parameters.Add("Third_Type_Id", customers.Third_Type_Id);
-                parameters.Add("FirstName", customers.FirstName);
-                parameters.Add("MiddleName", customers.MiddleName);
-                parameters.Add("LastName", customers.LastName);
-                parameters.Add("TradeName", customers.TradeName);
-                parameters.Add("CompanyName", customers.CompanyName);
-                parameters.Add("Rfc", customers.Rfc);
-                parameters.Add("Email", customers.Email);
-                parameters.Add("Area_Code", customers.Area_Code);
-                parameters.Add("Phone", customers.Phone);
-                parameters.Add("Customer_Type_Id", customers.Customer_Type_Id);
-                parameters.Add("With_Agreement", customers.With_Agreement);
-                parameters.Add("Date_Creates", customers.Date_Creates);
-                parameters.Add("Date_Modifies", customers.Date_Modifies);
-                parameters.Add("Date_Authorizes", customers.Date_Authorizes);
-                parameters.Add("Usr_Creates_Id", customers.Usr_Creates_Id);
-                parameters.Add("Usr_Modifies_id", customers.Usr_Modifies_id);
-                parameters.Add("Usr_Authorizes_Id", customers.Usr_Authorizes_Id);
+                parameters.Add("@_customer_id", customers.Customer_Id);
+                parameters.Add("@_user_access_id", customers.User_Access_Id);
+                parameters.Add("@_branch_office_id", customers.Branch_Office_Id);
+                parameters.Add("@_third_type_id", customers.Third_Type_Id);
+                parameters.Add("@_firstname", customers.Firtsname);
+                parameters.Add("@_lastname", customers.Lastname);
+                parameters.Add("@_business_name", customers.Business_Name);
+                parameters.Add("@_company_name", customers.Company_Name);
+                parameters.Add("@_rfc", customers.Rfc);
+                parameters.Add("@_email", customers.Email);
+                parameters.Add("@_area_code", customers.Area_Code);
+                parameters.Add("@_phone", customers.Phone);
+                parameters.Add("@_customer_type_id", customers.Customer_Type_Id);
+                parameters.Add("@_with_agreement", customers.With_Agreement);
+                parameters.Add("@_date_creation", customers.Date_Creation);
+                parameters.Add("@_date_modification", customers.Date_Modification);
+                parameters.Add("@_date_authorization", customers.Date_Authorization);
+                parameters.Add("@_usr_creates_id", customers.Usr_Creates_Id);
+                parameters.Add("@_usr_modifies_id", customers.Usr_Modifies_Id);
+                parameters.Add("@_usr_authorizes_id", customers.Usr_Authorizes_Id);
+                
 
                 var result = await connection.ExecuteAsync(query, param: parameters, commandType: CommandType.StoredProcedure);
                 return result > 0;
@@ -161,29 +161,29 @@ namespace ParcelService.Infrastructure.Repository
         {
             using (var connection = _connectionFactory.GetConnection)
             {
-                var query = "CustomersUpdate";
+                var query = "fn_update_customers";
                 var parameters = new DynamicParameters();
-                parameters.Add("Customer_Id", customers.Customer_Id);
-                parameters.Add("User_Access", customers.User_Access);
-                parameters.Add("Branchoffice_Id", customers.Branchoffice_Id);
-                parameters.Add("Third_Type_Id", customers.Third_Type_Id);
-                parameters.Add("FirstName", customers.FirstName);
-                parameters.Add("MiddleName", customers.MiddleName);
-                parameters.Add("LastName", customers.LastName);
-                parameters.Add("TradeName", customers.TradeName);
-                parameters.Add("CompanyName", customers.CompanyName);
-                parameters.Add("Rfc", customers.Rfc);
-                parameters.Add("Email", customers.Email);
-                parameters.Add("Area_Code", customers.Area_Code);
-                parameters.Add("Phone", customers.Phone);
-                parameters.Add("Customer_Type_Id", customers.Customer_Type_Id);
-                parameters.Add("With_Agreement", customers.With_Agreement);
-                parameters.Add("Date_Creates", customers.Date_Creates);
-                parameters.Add("Date_Modifies", customers.Date_Modifies);
-                parameters.Add("Date_Authorizes", customers.Date_Authorizes);
-                parameters.Add("Usr_Creates_Id", customers.Usr_Creates_Id);
-                parameters.Add("Usr_Modifies_id", customers.Usr_Modifies_id);
-                parameters.Add("Usr_Authorizes_Id", customers.Usr_Authorizes_Id);
+                parameters.Add("@_customer_id", customers.Customer_Id);
+                parameters.Add("@_user_access_id", customers.User_Access_Id);
+                parameters.Add("@_branch_office_id", customers.Branch_Office_Id);
+                parameters.Add("@_third_type_id", customers.Third_Type_Id);
+                parameters.Add("@_firstname", customers.Firtsname);
+                parameters.Add("@_lastname", customers.Lastname);
+                parameters.Add("@_business_name", customers.Business_Name);
+                parameters.Add("@_company_name", customers.Company_Name);
+                parameters.Add("@_rfc", customers.Rfc);
+                parameters.Add("@_email", customers.Email);
+                parameters.Add("@_area_code", customers.Area_Code);
+                parameters.Add("@_phone", customers.Phone);
+                parameters.Add("@_customer_type_id", customers.Customer_Type_Id);
+                parameters.Add("@_with_agreement", customers.With_Agreement);
+                parameters.Add("@_date_creation", customers.Date_Creation);
+                parameters.Add("@_date_modification", customers.Date_Modification);
+                parameters.Add("@_date_authorization", customers.Date_Authorization);
+                parameters.Add("@_usr_creates_id", customers.Usr_Creates_Id);
+                parameters.Add("@_usr_modifies_id", customers.Usr_Modifies_Id);
+                parameters.Add("@_usr_authorizes_id", customers.Usr_Authorizes_Id);
+                
 
                 var result = await connection.ExecuteAsync(query, param: parameters, commandType: CommandType.StoredProcedure);
                 return result > 0;
@@ -194,9 +194,9 @@ namespace ParcelService.Infrastructure.Repository
         {
             using (var connection = _connectionFactory.GetConnection)
             {
-                var query = "CustomersDelete";
+                var query = "fn_delete_customers";
                 var parameters = new DynamicParameters();
-                parameters.Add("CustomerID", customerId);
+                parameters.Add("@_customer_id", customerId);
 
                 var result = await connection.ExecuteAsync(query, param: parameters, commandType: CommandType.StoredProcedure);
                 return result > 0;
@@ -207,9 +207,9 @@ namespace ParcelService.Infrastructure.Repository
         {
             using (var connection = _connectionFactory.GetConnection)
             {
-                var query = "CustomersGetByID";
+                var query = "fn_get_customers";
                 var parameters = new DynamicParameters();
-                parameters.Add("CustomerID", customerId);
+                parameters.Add("@_customer_id", customerId);
 
                 var customer = await connection.QuerySingleAsync<Customers>(query, param: parameters, commandType: CommandType.StoredProcedure);
                 return customer;

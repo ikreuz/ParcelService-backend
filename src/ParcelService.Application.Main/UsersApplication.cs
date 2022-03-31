@@ -11,28 +11,49 @@ namespace ParcelService.Application.Main
     {
         private readonly IUsersDomain _usersDomain;
         private readonly IMapper _mapper;
+        private readonly IPortalSecurity _portalSecurity;
+        //private readonly IEncrypt _encrypt;
 
-        public UsersApplication(IUsersDomain usersDomain, IMapper mapper)
+        public UsersApplication(
+            IUsersDomain usersDomain, 
+            //IEncrypt encrypt,
+            IMapper mapper, 
+            IPortalSecurity portalSecurity)
         {
             _usersDomain = usersDomain;
+            //_encrypt = encrypt;
             _mapper = mapper;
+            _portalSecurity = portalSecurity;
         }
 
         public Response<UsersDto> Authenticate(string username, string passwrod)
         {
             var response = new Response<UsersDto>();
+
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(passwrod))
             {
                 response.Message = "Parameters cannot be empty";
                 return response;
             }
 
+            string strUserName = _portalSecurity.InputFilter(username,
+                FilterFlag.NoScripting |
+                FilterFlag.NoSQL |
+                FilterFlag.Nomarkup |
+                FilterFlag.MultiLine);
+
             try
             {
-                var user = _usersDomain.Authenticate(username);
-                response.Data = _mapper.Map<UsersDto>(user);
-                response.IsSuccess = true;
-                response.Message = "Successful Authentication!";
+                var user = _usersDomain.Authenticate(strUserName);
+                
+                if (user != null && !string.IsNullOrEmpty(user.Password))
+                {
+
+
+                    response.Data = _mapper.Map<UsersDto>(user);
+                    response.IsSuccess = true;
+                    response.Message = "Successful Authentication!";
+                }
             }
             catch (InvalidOperationException)
             {

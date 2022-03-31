@@ -1,0 +1,28 @@
+Your result is: {
+  "Input": "{user:employee,name:drummer}",
+  "EncryptInput": "1234",
+  "EncryptOutput": "z2MIR6Xh04Y=",
+  "Base64": "e3VzZXI6ZW1wbG95ZWUsbmFtZTpkcnVtbWVyfQ==",
+  "Uuid": "67e276d4-7d6c-8330-c823-7d62ccd35a95",
+  "Encrypted": "IENeD/Ewti7hoZgF00HYhrYDd7GyLv0vgduSodaHM7Ryd8icCHLvyw==",
+  "License": "00Ji2ltAr/B8b9JvZAnaKQbYibEjQErONs+8+Zkfo+0=",
+  "Password": "z2MIR6Xh04Y=",
+  "Block": "{\r\n  \"index\": \"1\",\r\n  \"timestamp\": \"2022-03-31T06:26:12.6400173-06:00\",\r\n  \"previoushash\": \"0rRIxb1nYUrHgmC59gLxLXB481AsxPK9gNzwX8dfPrA=\",\r\n  \"hash\": \"00Ji2ltAr/B8b9JvZAnaKQbYibEjQErONs+8+Zkfo+0=\",\r\n  \"data\": \"{code: 67e276d4-7d6c-8330-c823-7d62ccd35a95,user: employee,name: drummer\",\r\n  \"nonce\": \"3079\"\r\n}",
+  "User_Auth_Json": "{code:67e276d4-7d6c-8330-c823-7d62ccd35a95,auth:00Ji2ltAr/B8b9JvZAnaKQbYibEjQErONs+8+Zkfo+0=,user:employee,name:drummer}"
+}
+-- -- --
+-- -- --
+-- -- --
+-- -- --
+Your result is: {
+  "Input": "{user:customer,name:dean}",
+  "EncryptInput": "1234",
+  "EncryptOutput": "z2MIR6Xh04Y=",
+  "Base64": "e3VzZXI6Y3VzdG9tZXIsbmFtZTpkZWFufQ==",
+  "Uuid": "24086f97-6a7a-8800-38f9-6df61d0bc92b",
+  "Encrypted": "tacelmqrVmCtMsCVm6H0ADUnknRlSRsA9scJTLB7AIweAT/EGWxCjg==",
+  "License": "00KDLp8xTvU1uro/yHT/3epVfLuCkLHgZ4f502FGYlQ=",
+  "Password": "z2MIR6Xh04Y=",
+  "Block": "{\r\n  \"index\": \"1\",\r\n  \"timestamp\": \"2022-03-31T06:27:32.3211532-06:00\",\r\n  \"previoushash\": \"0rRIxb1nYUrHgmC59gLxLXB481AsxPK9gNzwX8dfPrA=\",\r\n  \"hash\": \"00KDLp8xTvU1uro/yHT/3epVfLuCkLHgZ4f502FGYlQ=\",\r\n  \"data\": \"{code: 24086f97-6a7a-8800-38f9-6df61d0bc92b,user: customer,name: dean\",\r\n  \"nonce\": \"3607\"\r\n}",
+  "User_Auth_Json": "{code:24086f97-6a7a-8800-38f9-6df61d0bc92b,auth:00KDLp8xTvU1uro/yHT/3epVfLuCkLHgZ4f502FGYlQ=,user:customer,name:dean}"
+}
